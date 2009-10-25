@@ -4,15 +4,11 @@ using System.Linq;
 
 namespace KataBankOCR
 {
-    /// <summary>
-    /// Class for handling ocr codes of the format;
-    ///  var line0 = "    _  _     _  _  _  _  _ "; 
-    ///  var line1 = "  | _| _||_||_ |_   ||_||_|";
-    ///  var line2 = "  ||_  _|  | _||_|  ||_| _|";
-    /// </summary>
     public class OCR
     {
-        readonly string input;
+        private readonly string line0;
+        private readonly string line1;
+        private readonly string line2;
         readonly IList<Digit> digits = new List<Digit>();
         bool invalid;
         bool badChecksum;
@@ -28,7 +24,9 @@ namespace KataBankOCR
         /// <param name="line2">The third line</param>
         public OCR(string line0, string line1, string line2)
         {
-            input = line0 + line1 + line2;
+            this.line0 = line0;
+            this.line1 = line1;
+            this.line2 = line2;
             Parse();
             Validate();
         }
@@ -70,22 +68,16 @@ namespace KataBankOCR
         /// </returns>
         public Digit GetDigit(int index)
         {
-            return new Digit(SubStringAtIndexFromLine(index, 0) +
-                   SubStringAtIndexFromLine(index, 1) +
-                   SubStringAtIndexFromLine(index, 2));
-        }
-
-        private string SubStringAtIndexFromLine(int index, int line)
-        {
             const int DIGIT_WIDTH = 3;
-            const int LINE_WIDTH = 27;
-            return input.Substring(
-                index * DIGIT_WIDTH + LINE_WIDTH * line, DIGIT_WIDTH);
+            return new Digit(
+                line0.Substring(index * DIGIT_WIDTH, DIGIT_WIDTH) +
+                line1.Substring(index * DIGIT_WIDTH, DIGIT_WIDTH) +
+                line2.Substring(index * DIGIT_WIDTH, DIGIT_WIDTH));
         }
 
         /// <summary>
         /// If invalid digits where found in the code, " ILL" is appended to the
-        /// code. If the code did not match the checksum algorightm " ERR is appended".
+        /// code. If the code did not match the checksum algorithm " ERR" is appended".
         /// </summary>
         /// <returns>The ocr code as a string, e.g "123456789"</returns>
         public override string ToString()

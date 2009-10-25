@@ -5,7 +5,8 @@ using System.Text;
 namespace KataBankOCR
 {
     /// <summary>
-    /// Build the result from the scan. One ocr at the time.
+    /// Read scan input from a <see ref="TextReader"></see> and
+    /// build the result one ocr at the time.
     /// </summary>
     public class ScannerResultBuilder
     {

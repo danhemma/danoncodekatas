@@ -5,7 +5,6 @@ namespace KataBankOCR
 {
     /// <summary>
     /// Class for scanning input with one or more ocr codes of the format;
-    /// Sample input;
     ///     "    _  _     _  _  _  _  _ " + Environment.Newline +  
     ///     "  | _| _||_||_ |_   ||_||_|" + Environment.Newline + ;
     ///     "  ||_  _|  | _||_|  ||_| _|" + Environment.Newline;
@@ -13,7 +12,7 @@ namespace KataBankOCR
     /// Every code is three lines long and contains 9 digits. Every
     /// digit is three characters wide.
     /// 
-    /// The input is ended with Environment.Newline.
+    /// The input ends with Environment.Newline.
     /// </summary>
     public class Scanner     
     {

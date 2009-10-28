@@ -38,12 +38,17 @@ namespace Bowling.Kata1
 
         public void AddRoll(int pins)
         {
-            if (Complete())
-                throw new InvalidOperationException("No more rolls on this ScoreCard");
+            CheckComplete();
             bool shouldAddFrame = NewFrameNeeded();
             RegisterRoll(pins);
             if (shouldAddFrame)
                 frames.Add(new Frame(pins));
+        }
+
+        private void CheckComplete()
+        {
+            if (Complete())
+                throw new InvalidOperationException("No more rolls on this ScoreCard");
         }
 
         private bool Complete()

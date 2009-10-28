@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6929C7A9-6E23-420D-B920-9560DDEF8853}</ProjectGuid>
+    <ProjectGuid>{9B046D02-A797-4F52-AC73-81C8DAFEBCB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bowling.Kata1</RootNamespace>
-    <AssemblyName>Bownling.Kata1</AssemblyName>
+    <RootNamespace>Bowling.Kata1.Test</RootNamespace>
+    <AssemblyName>Bowling.Kata1.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,9 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frame.cs" />
-    <Compile Include="ScoreCard.cs" />
+    <Compile Include="FrameTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreCardTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kata1\Bowling.Kata1.csproj">
+      <Project>{6929C7A9-6E23-420D-B920-9560DDEF8853}</Project>
+      <Name>Bowling.Kata1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

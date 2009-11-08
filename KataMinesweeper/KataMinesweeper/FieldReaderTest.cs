@@ -23,7 +23,7 @@ namespace KataMinesweeper
             sb.AppendLine("**");
             var reader = new FieldReader(sb.ToString());
             var output = reader.ReadField();
-            Assert.That(output.Content, Is.EqualTo("**" + Environment.NewLine + "**" + Environment.NewLine));
+            Assert.That(output.Rows.ToString(), Is.EqualTo("**" + Environment.NewLine + "**"));
         }
         
         [Test]
@@ -38,9 +38,9 @@ namespace KataMinesweeper
             sb.AppendLine("**");
             var reader = new FieldReader(sb.ToString());
             var output = reader.ReadField();
-            Assert.That(output.Content, Is.EqualTo("**" + Environment.NewLine + "**" + Environment.NewLine));
+            Assert.That(output.Rows.ToString(), Is.EqualTo("**" + Environment.NewLine + "**"));
             output = reader.ReadField();
-            Assert.That(output.Content, Is.EqualTo("**" + Environment.NewLine + "**" + Environment.NewLine));
+            Assert.That(output.Rows.ToString(), Is.EqualTo("**" + Environment.NewLine + "**"));
         }
     }
 }

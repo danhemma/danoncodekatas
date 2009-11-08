@@ -14,7 +14,7 @@ namespace KataMinesweeper
                 "*";
             var output =
                 "Field #1:" + Environment.NewLine +
-                "*" + Environment.NewLine;
+                "*";
             Assert.That((new Game(input)).ShowHints(), Is.EqualTo(output));
         }
         
@@ -31,7 +31,7 @@ namespace KataMinesweeper
                 "Field #1:" + Environment.NewLine +
                 "*" + Environment.NewLine +
                 "Field #2:" + Environment.NewLine +
-                "*" + Environment.NewLine;
+                "*";
             Assert.That((new Game(input)).ShowHints(), Is.EqualTo(output));
         }
     }

@@ -15,24 +15,33 @@ namespace KataMinesweeper
         public Field GetHints()
         {
             var result = new List<string>();
+            AddRowsWithHints(result);
+            return CreateResultFieldWith(result);
+        }
+
+        private void AddRowsWithHints(ICollection<string> result)
+        {
             for (int row = 0; row < field.RowCount; row++)
-            {
-                string resultRow = "";
-                for (int column = 0; column < field.ColumnCount; column++)
-                    resultRow += GetHintAt(row, column);
-                result.Add(resultRow);    
-            }
-            return CreateResult(result);
+                AddRowWithHints(row, result);
+        }
+
+        private void AddRowWithHints(int row, ICollection<string> result)
+        {
+            string resultRow = "";
+            for (int column = 0; column < field.ColumnCount; column++)
+                resultRow += GetHintAt(row, column);
+            result.Add(resultRow);
         }
 
         private char GetHintAt(int row, int column)
         {
-            if (field.MineAt(row, column))
-                return field.CharAt(row, column);
+            return field.MineAt(row, column) ? '*' :
+                IntToChar(CountMinesAround(row, column));
+        }
 
-            int minesAround = CountMinesAround(row, column);
-            
-            return Char.ConvertFromUtf32(minesAround + 48)[0];
+        private char IntToChar(int value)
+        {
+            return Char.ConvertFromUtf32(value + 48)[0];
         }
 
         private int CountMinesAround(int row, int column)
@@ -44,7 +53,7 @@ namespace KataMinesweeper
             return minesAround;
         }
 
-        private Field CreateResult(List<string> result)
+        private Field CreateResultFieldWith(List<string> result)
         {
             return new Field {ColumnCount = field.ColumnCount, Rows = new FieldRows(result.ToArray())};
         }

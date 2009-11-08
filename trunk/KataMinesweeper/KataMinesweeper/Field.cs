@@ -12,17 +12,9 @@ namespace KataMinesweeper
             get { return Rows.Count; }
         }
 
-
         public char CharAt(int row, int column)
         {
-            try
-            {
-                return Rows[row][column];
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                throw new InvalidOperationException(row + " " + column);
-            }
+            return Rows[row][column];
         }
 
         public bool MineAt(int row, int column)

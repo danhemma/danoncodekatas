@@ -19,10 +19,17 @@ namespace KataMinesweeper
 
             int fieldCount = 1;
             while (reader.HasMoreFields())
+            {
+                var fieldWithHints = (new HintsPopulator(reader.ReadField())).GetHints();
                 result += string.Format(Header, fieldCount++) + Environment.NewLine +
-                    (new HintsPopulator(reader.ReadField())).GetHints().Rows + Environment.NewLine;
-            
-            return result.Substring(0, result.Length - 2);
+                          fieldWithHints.Rows + Environment.NewLine;
+            }
+            return RemoveNewline(result);
+        }
+
+        private string RemoveNewline(string result)
+        {
+            return result.Substring(0, result.Length - Environment.NewLine.Length);
         }
     }
 }

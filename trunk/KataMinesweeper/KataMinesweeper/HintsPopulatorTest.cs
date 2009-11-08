@@ -19,7 +19,7 @@ namespace KataMinesweeper
         }
         
         [Test]
-        public void Test_1x2()
+        public void Test_1x2_One_Mine()
         {
             var field = new Field()
                             {
@@ -28,6 +28,30 @@ namespace KataMinesweeper
                             };
             var populator = new HintsPopulator(field);
             Assert.That(populator.GetHints().Rows, Is.EquivalentTo(new[] { "*1" }));
+        }
+        
+        [Test]
+        public void Test_2x2_One_Mine()
+        {
+            var field = new Field()
+                            {
+                                ColumnCount = 2,
+                                Rows = new FieldRows(new[] { "*.", ".." })
+                            };
+            var populator = new HintsPopulator(field);
+            Assert.That(populator.GetHints().Rows, Is.EquivalentTo(new[] { "*1", "11" }));
+        }
+        
+        [Test]
+        public void Test_2x2_Two_Mines()
+        {
+            var field = new Field()
+                            {
+                                ColumnCount = 2,
+                                Rows = new FieldRows(new[] { "**", "22" })
+                            };
+            var populator = new HintsPopulator(field);
+            Assert.That(populator.GetHints().Rows, Is.EquivalentTo(new[] { "**", "22" }));
         }
     }
 }

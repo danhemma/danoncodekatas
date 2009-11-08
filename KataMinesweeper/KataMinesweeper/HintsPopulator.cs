@@ -29,7 +29,19 @@ namespace KataMinesweeper
         {
             if (field.MineAt(row, column))
                 return field.CharAt(row, column);
-            return '1';
+
+            int minesAround = CountMinesAround(row, column);
+            
+            return Char.ConvertFromUtf32(minesAround + 48)[0];
+        }
+
+        private int CountMinesAround(int row, int column)
+        {
+            int minesAround = 0;
+            foreach (var rowOffset in new [] {-1, 0, 1})
+                foreach (var columnOffset in new[] { -1, 0, 1})
+                   minesAround += field.MineAt(row + rowOffset, column + columnOffset) ? 1 : 0;
+            return minesAround;
         }
 
         private Field CreateResult(List<string> result)

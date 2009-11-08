@@ -40,6 +40,7 @@
     <Compile Include="Field.cs" />
     <Compile Include="FieldReader.cs" />
     <Compile Include="FieldReaderTest.cs" />
+    <Compile Include="FieldTest.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="HintsPopulator.cs" />

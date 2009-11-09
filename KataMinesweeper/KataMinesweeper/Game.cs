@@ -4,7 +4,7 @@ namespace KataMinesweeper
 {
     public class Game
     {
-        public const string Header = "Field #{0}:";
+        private const string Header = "Field #{0}:";
         private readonly string input;
 
         public Game(string input)
@@ -20,11 +20,20 @@ namespace KataMinesweeper
             int fieldCount = 1;
             while (reader.HasMoreFields())
             {
-                var fieldWithHints = (new HintsPopulator(reader.ReadField())).GetHints();
-                result += string.Format(Header, fieldCount++) + Environment.NewLine +
-                          fieldWithHints.Rows + Environment.NewLine;
+                result += GetHeader(fieldCount++) +
+                          GetFieldWithHints(reader).Rows + Environment.NewLine;
             }
             return RemoveNewline(result);
+        }
+
+        private Field GetFieldWithHints(FieldReader reader)
+        {
+            return (new HintsPopulator(reader.ReadField())).GetHints();
+        }
+
+        public static string GetHeader(int fieldCount)
+        {
+            return string.Format(Header, fieldCount) + Environment.NewLine;
         }
 
         private string RemoveNewline(string result)

@@ -1,0 +1,1 @@
+My solutions to coding katas from [codingdojo](http://codingdojo.org/) among others.
